@@ -38,18 +38,16 @@ module.exports = {
 
     async getUsers(req, res) {
         const response = { ...responseModel }
-    
+
         const [, data] = await connection.query(`
             SELECT * FROM pacientes
         `)
-    
+
         response.success = true
         response.data = data
-    
-        return res.json(response)
-    },
 
-    async app(req, res) {
-        res.send('API esta funcionando!');
+        return res.json(response)
     }
+
+
 }

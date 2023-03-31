@@ -1,3 +1,17 @@
+//parte do teste
+
+const fastify = require('fastify')();
+
+fastify.get('/', (req, reply) => {
+  reply.send('Welcome to my API!');
+});
+
+// exporta a aplicação
+module.exports = fastify;
+
+
+//
+
 const express = require('express')
 const app = express()
 require('dotenv').config()
@@ -14,3 +28,4 @@ app.use(routes)
 app.listen(port, () => console.log(`
     Server started in http://localhost:${port} or ${protocol}://${ip}:${port}
 `))
+
