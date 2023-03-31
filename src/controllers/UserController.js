@@ -47,5 +47,9 @@ module.exports = {
         response.data = data
     
         return res.json(response)
+    },
+
+    async app(req, res) {
+        res.send('API esta funcionando!');
     }
 }
