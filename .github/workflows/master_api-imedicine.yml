@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'api-imedicine'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_B7133902B8494CBFBCBBE5C6F4D5234E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BFDD8706A4FA48558FBFC95F2AC4B075 }}
           package: .
