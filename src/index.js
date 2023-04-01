@@ -1,16 +1,3 @@
-//parte do teste
-
-const fastify = require('fastify')();
-
-fastify.get('/', (req, reply) => {
-  reply.send('Welcome to my API!');
-});
-
-// exporta a aplicação
-module.exports = fastify;
-
-
-//
 
 const express = require('express')
 const app = express()
@@ -20,7 +7,7 @@ app.use(express.json())
 
 const protocol = process.env.PROTOCOL || "http"
 const ip = require('ip').address()
-const port = process.env.PORT || 3030
+const port = process.env.PORT || 80
 
 const routes = require('./routes')
 app.use(routes)
