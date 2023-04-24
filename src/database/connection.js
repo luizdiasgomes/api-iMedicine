@@ -1,14 +1,11 @@
+require('dotenv').config(); 
+
 const Sequelize = require('sequelize')
 
-const database = 'testapi';
-const username = 'root';
-const password = '123456';
-const host = 'localhost';
-const dialect = 'mysql';
-
-const connection = new Sequelize(database, username, password, {
-    host,
-    dialect
+const connection = new Sequelize(process.env.DB_DATABASE, process.env.DB_USERNAME, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT,
+    port: process.env.DB_PORT
 })
 
 module.exports = connection

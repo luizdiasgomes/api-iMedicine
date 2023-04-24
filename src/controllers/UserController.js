@@ -42,7 +42,7 @@ module.exports = {
         const [, data] = await connection.query(`
             SELECT * FROM pacientes
         `)
-
+        
         response.success = true
         response.data = data
 
@@ -51,7 +51,7 @@ module.exports = {
 
     async app(req, res) {
         res.send('API está rodando!');
-    }
+    },
 
-
+    
 }
