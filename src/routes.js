@@ -8,7 +8,7 @@ router.get('/', UserController.app)
 router.post('/create', UserController.create)
 router.post('/login', UserController.login)
 router.get('/listaPacientes', UserController.getUsers)
-router.post('/createClinic', ClinicController.createClinic)
-router.get('/listaClinic', ClinicController.getClinic)
+router.post('/createClinica', ClinicController.createClinic)
+router.get('/listaClinicas', ClinicController.getClinic)
 
 module.exports = router
