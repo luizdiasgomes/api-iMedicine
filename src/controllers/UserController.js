@@ -8,13 +8,13 @@ const responseModel = {
 
 module.exports = {
 
-    async create(req, res) {
+    async criarPaciente(req, res) {
         const response = { ...responseModel }
 
-        const { username, password } = req.body;
+        const { username, email, password } = req.body;
 
         const [, affectRows] = await connection.query(`
-            INSERT INTO pacientes VALUES (DEFAULT, '${username}', '${password}', NOW(), NOW())
+            INSERT INTO pacientes VALUES (DEFAULT, '${username}', '${email}', '${password}', NOW(), NOW())
         `)
 
         response.success = affectRows > 0
