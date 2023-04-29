@@ -25,10 +25,10 @@ module.exports = {
     async login(req, res) {
         const response = { ...responseModel }
 
-        const { username, password } = req.body;
+        const { email, password } = req.body;
 
         const [, data] = await connection.query(`
-            SELECT * FROM pacientes WHERE username='${username}' AND password='${password}'
+            SELECT * FROM pacientes WHERE email='${email}' AND password='${password}'
         `)
 
         response.success = data.length > 0
