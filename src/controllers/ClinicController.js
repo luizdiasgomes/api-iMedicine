@@ -11,10 +11,10 @@ module.exports = {
     async createClinic(req, res) {
         const response = { ...responseModel }
 
-        const { titulo, horario_atendimento,  endereco, telefone } = req.body;
+        const { titulo, horario_atendimento,  endereco, telefone, url_imagem } = req.body;
 
         const [, affectRows] = await connection.query(`
-            INSERT INTO clinica VALUES (DEFAULT, '${titulo}', '${horario_atendimento}', '${endereco}', '${telefone}')
+            INSERT INTO clinica VALUES (DEFAULT, '${titulo}', '${horario_atendimento}', '${endereco}', '${telefone}', '${url_imagem}')
         `)
 
         response.success = affectRows > 0
