@@ -22,7 +22,7 @@ module.exports = {
         return res.json(response)
     },
 
-    async getClinic(req, res) {
+    async getClinicas(req, res) {
         const response = { ...responseModel }
     
         const [, data] = await connection.query(`
