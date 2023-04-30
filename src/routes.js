@@ -10,6 +10,6 @@ router.post('/login', UserController.login)
 router.get('/listaPacientes', UserController.getUsers)
 router.post('/createClinica', ClinicaController.createClinic)
 router.post('/createClinica', ClinicaController.createClinic)
-router.get('/loginAdm', ClinicaController.loginAdm)
+router.post('/loginAdm', ClinicaController.loginAdm)
 
 module.exports = router
