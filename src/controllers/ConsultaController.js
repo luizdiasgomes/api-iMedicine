@@ -22,12 +22,10 @@ module.exports = {
             consulta.observacao, 
             pacientes.username AS nome_do_paciente, 
             medico.nome AS nome_do_medico,
-            clinica.titulo AS nome_da_clinica
         FROM 
             consulta 
             INNER JOIN pacientes ON consulta.pacientes_id = pacientes.id 
             INNER JOIN medico ON consulta.medico_id = medico.id
-            INNER JOIN clinica ON consulta.clinica_id = clinica.id
         WHERE 
             consulta.clinica_id = ${id};
     
