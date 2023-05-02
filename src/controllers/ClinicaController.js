@@ -35,6 +35,20 @@ module.exports = {
         return res.json(response)
     },
 
+    async getClinicaById(req, res) {
+        const response = { ...responseModel }
+        const { id } = req.params;
+      
+        const [, data] = await connection.query(`
+          SELECT * FROM clinica WHERE id=${id}
+        `)
+      
+        response.success = data.length > 0
+        response.data = data
+      
+        return res.json(response)
+      },
+
     async loginAdm (req, res) {
         const response = { ...responseModel }
 
