@@ -14,20 +14,23 @@ module.exports = {
       
         const [, data] = await connection.query(`
         SELECT 
-            consulta.id, 
-            consulta.medico_id, 
-            consulta.pacientes_id, 
-            consulta.data_hora, 
-            consulta.tipo, 
-            consulta.observacao, 
-            pacientes.username AS nome_do_paciente, 
-            medico.nome AS nome_do_medico,
-        FROM 
-            consulta 
-            INNER JOIN pacientes ON consulta.pacientes_id = pacientes.id 
-            INNER JOIN medico ON consulta.medico_id = medico.id
-        WHERE 
-            consulta.clinica_id = ${id};
+    consulta.id, 
+    consulta.medico_id, 
+    consulta.pacientes_id, 
+    consulta.data_hora, 
+    consulta.tipo, 
+    consulta.observacao, 
+    pacientes.username AS nome_do_paciente, 
+    medico.nome AS nome_do_medico,
+    clinica.titulo AS nome_da_clinica
+FROM 
+    consulta 
+    INNER JOIN pacientes ON consulta.pacientes_id = pacientes.id 
+    INNER JOIN medico ON consulta.medico_id = medico.id
+    INNER JOIN clinica ON consulta.clinica_id = clinica.id
+WHERE 
+    consulta.clinica_id = ${id};
+
     
         `)
       
