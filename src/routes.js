@@ -2,6 +2,7 @@ const router = require('express').Router()
 
 const ClinicaController = require('./controllers/ClinicaController')
 const ConsultaController = require('./controllers/ConsultaController')
+const ImageController = require('./controllers/ImageController')
 //import controllers
 const UserController = require("./controllers/UserController")
 
@@ -15,5 +16,7 @@ router.get('/listaPacientes', UserController.getUsers)
 router.post('/createClinica', ClinicaController.createClinic)
 router.post('/createClinica', ClinicaController.createClinic)
 router.post('/loginAdm', ClinicaController.loginAdm)
+
+router.get('/images/:imageName', ImageController.getImageByName)
 
 module.exports = router
