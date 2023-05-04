@@ -42,7 +42,7 @@ module.exports = {
         const [, data] = await connection.query(`
             SELECT * FROM pacientes
         `)
-        
+
         response.success = true
         response.data = data
 
@@ -53,5 +53,21 @@ module.exports = {
         res.send('API está rodando!');
     },
 
-    
+    async getPacienteById(req, res) {
+        const response = { ...responseModel }
+        const { id } = req.params;
+
+        const [, data] = await connection.query(`
+        SELECT * 
+        FROM paciente  
+        WHERE id = ${id};
+        `)
+
+        response.success = data.length > 0
+        response.data = data
+
+        return res.json(response)
+    },
+
+
 }
