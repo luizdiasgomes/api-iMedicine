@@ -53,14 +53,14 @@ module.exports = {
         res.send('API está rodando!');
     },
 
-    async getPacienteById(req, res) {
+    async getPacienteByEmail(req, res) {
         const response = { ...responseModel }
-        const { id } = req.params;
+        const { email } = req.params;
 
         const [, data] = await connection.query(`
         SELECT * 
         FROM paciente  
-        WHERE id = ${id};
+        WHERE email = '${email}';
         `)
 
         response.success = data.length > 0
