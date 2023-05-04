@@ -8,10 +8,10 @@ const responseModel = {
 
 module.exports = {
 
-    async getConsultaById(req, res) {
+    async getConsultaByClinicaId(req, res) {
         const response = { ...responseModel }
         const { id } = req.params;
-      
+
         const [, data] = await connection.query(`
         SELECT 
     consulta.id, 
@@ -33,12 +33,29 @@ WHERE
 
     
         `)
-      
+
         response.success = data.length > 0
         response.data = data
-      
+
         return res.json(response)
-      },
+    },
+
+    async getConsultaByPacienteId(req, res) {
+        const response = { ...responseModel }
+        const { id } = req.params;
+
+        const [, data] = await connection.query(`
+        SELECT * FROM consulta c  WHERE c.pacientes_id = ${id};
+
+    
+        `)
+
+        response.success = data.length > 0
+        response.data = data
+
+        return res.json(response)
+    },
+
 
 
 }
