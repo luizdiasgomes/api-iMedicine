@@ -60,7 +60,7 @@ FROM
     INNER JOIN pacientes ON consulta.pacientes_id = pacientes.id 
     INNER JOIN medico ON consulta.medico_id = medico.id
     INNER JOIN clinica ON consulta.clinica_id = clinica.id
-WHERE c.pacientes_id = ${id};
+WHERE consulta.pacientes_id = ${id};
 
     
         `)
