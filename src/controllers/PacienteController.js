@@ -59,7 +59,7 @@ module.exports = {
 
         const [, data] = await connection.query(`
         SELECT * 
-        FROM paciente  
+        FROM pacientes
         WHERE email = '${email}';
         `)
 
