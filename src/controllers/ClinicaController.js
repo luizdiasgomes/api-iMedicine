@@ -11,7 +11,7 @@ module.exports = {
     async createClinic(req, res) {
         const response = { ...responseModel }
 
-        const { titulo, horario_atendimento,  endereco, telefone, url_imagem, email, senha } = req.body;
+        const { titulo, horario_atendimento, endereco, telefone, url_imagem, email, senha } = req.body;
 
         const [, affectRows] = await connection.query(`
             INSERT INTO clinica VALUES (DEFAULT, '${titulo}', '${horario_atendimento}', '${endereco}', '${telefone}', '${url_imagem}', '${email}', '${senha}',)
@@ -24,32 +24,35 @@ module.exports = {
 
     async getClinicas(req, res) {
         const response = { ...responseModel }
-    
+
         const [, data] = await connection.query(`
             SELECT * FROM clinica
         `)
-    
+
         response.success = true
         response.data = data
-    
+
         return res.json(response)
     },
 
     async getClinicaById(req, res) {
         const response = { ...responseModel }
         const { id } = req.params;
-      
+
         const [, data] = await connection.query(`
-          SELECT * FROM clinica WHERE id=${id}
+            SELECT c.*, m.nome 
+            FROM clinica c 
+            JOIN medico m ON c.id = m.clinica_id 
+            WHERE c.id = ${id};
         `)
-      
+
         response.success = data.length > 0
         response.data = data
-      
-        return res.json(response)
-      },
 
-    async loginAdm (req, res) {
+        return res.json(response)
+    },
+
+    async loginAdm(req, res) {
         const response = { ...responseModel }
 
         const { email, password } = req.body;
