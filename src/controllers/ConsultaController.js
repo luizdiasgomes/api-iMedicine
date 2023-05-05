@@ -74,7 +74,7 @@ FROM
     INNER JOIN pacientes ON consulta.pacientes_id = pacientes.id 
     INNER JOIN medico ON consulta.medico_id = medico.id
     INNER JOIN clinica ON consulta.clinica_id = clinica.id
-WHERE pacientes.email = ${email};
+WHERE pacientes.email = '${email}';
 
     
         `)
