@@ -9,7 +9,7 @@ const PacienteController = require("./controllers/PacienteController")
 
 router.get('/', PacienteController.app)
 router.post('/criarPaciente', PacienteController.criarPaciente)
-router.get('/createConsulta/', ConsultaController.createConsulta)
+router.post('/createConsulta', ConsultaController.createConsulta)
 router.post('/login', PacienteController.login)
 router.get('/listaClinicas', ClinicaController.getClinicas)
 router.get('/listaClinicas/:id', ClinicaController.getClinicaById)
