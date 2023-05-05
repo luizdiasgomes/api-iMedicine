@@ -14,13 +14,15 @@ router.post('/login', PacienteController.login)
 router.get('/listaClinicas', ClinicaController.getClinicas)
 router.get('/listaClinicas/:id', ClinicaController.getClinicaById)
 router.get('/Consultas/Clinica/:id', ConsultaController.getConsultaByClinicaId)
-router.get('/Consultas/Paciente/:id', ConsultaController.getConsultaByPacienteId)
+router.get('/Consultas/Paciente/:email', ConsultaController.getConsultaByPacienteEmail)
 router.get('/listaMedicos/:id', MedicoController.getMedicoById)
 router.get('/listaPacientes/:email', PacienteController.getPacienteByEmail)
 router.get('/listaPacientes', PacienteController.getUsers)
 router.post('/createClinica', ClinicaController.createClinic)
 router.post('/createClinica', ClinicaController.createClinic)
 router.post('/loginAdm', ClinicaController.loginAdm)
+
+//router.get('/getIdFromPaciente/:email', PacienteController.getIdFromPacienteWhereEmailIs)
 
 router.get('/images/:imageName', ImageController.getImageByName)
 

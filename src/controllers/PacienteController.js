@@ -69,5 +69,18 @@ module.exports = {
         return res.json(response)
     },
 
+    async getIdFromPacienteWhereEmailIs(req, res) {
+        const response = { ...responseModel }
+        const { email } = req.params;
+
+        const [, data] = await connection.query(`
+        select p.id from pacientes p where p.email = '${email}'
+        `)
+
+        response.success = data.length > 0
+        response.data = data
+
+        return res.json(response)
+    },
 
 }

@@ -54,9 +54,9 @@ WHERE
         return res.json(response)
     },
 
-    async getConsultaByPacienteId(req, res) {
+    async getConsultaByPacienteEmail(req, res) {
         const response = { ...responseModel }
-        const { id } = req.params;
+        const { email } = req.params;
 
         const [, data] = await connection.query(`
         SELECT 
@@ -74,7 +74,7 @@ FROM
     INNER JOIN pacientes ON consulta.pacientes_id = pacientes.id 
     INNER JOIN medico ON consulta.medico_id = medico.id
     INNER JOIN clinica ON consulta.clinica_id = clinica.id
-WHERE consulta.pacientes_id = ${id};
+WHERE pacientes.email = ${email};
 
     
         `)
