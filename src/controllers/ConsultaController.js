@@ -8,6 +8,20 @@ const responseModel = {
 
 module.exports = {
 
+    async createConsulta(req, res) {
+        const response = { ...responseModel }
+
+        const { medico_id, pacientes_id, data_hora, tipo, observacao, clinica_id } = req.body;
+
+        const [, affectRows] = await connection.query(`
+            INSERT INTO clinica VALUES (DEFAULT, ${medico_id}, ${pacientes_id}, '${data_hora}', '${tipo}', '${observacao}', ${clinica_id},)
+        `)
+
+        response.success = affectRows > 0
+
+        return res.json(response)
+    },
+
     async getConsultaByClinicaId(req, res) {
         const response = { ...responseModel }
         const { id } = req.params;
