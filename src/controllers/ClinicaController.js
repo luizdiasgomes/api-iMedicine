@@ -54,7 +54,7 @@ module.exports = {
         const { email } = req.params;
       
         const [, data] = await connection.query(`
-          SELECT * FROM clinica WHERE email=${email}
+          SELECT * FROM clinica WHERE email='${email}'
         `)
       
         response.success = data.length > 0
