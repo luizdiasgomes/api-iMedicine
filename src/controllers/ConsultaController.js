@@ -65,7 +65,8 @@ WHERE
     consulta.pacientes_id, 
     consulta.data_hora, 
     consulta.tipo, 
-    consulta.observacao, 
+    consulta.observacao,
+    consulta.status,
     pacientes.username AS nome_do_paciente, 
     medico.nome AS nome_do_medico,
     clinica.titulo AS nome_da_clinica
