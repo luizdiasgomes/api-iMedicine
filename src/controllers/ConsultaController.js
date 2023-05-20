@@ -13,13 +13,29 @@ module.exports = {
 
         const { medico_id, pacientes_id, data_hora, tipo, observacao, clinica_id, status } = req.body;
 
+        // Verificar se já existe uma consulta com a mesma data e hora
+        const [existingConsultations] = await connection.query(`
+          SELECT * FROM consulta WHERE data_hora = '${data_hora}' AND medico_id = ${medico_id}
+        `);
+
+        if (existingConsultations.length > 0) {
+            response.success = false;
+            response.message = 'Já existe uma consulta agendada para a mesma data e hora.';
+            return res.status(400).json(response); // Retorna código de erro 400 (Bad Request)
+        }
+
+        // Inserir a nova consulta no banco de dados
         const [, affectRows] = await connection.query(`
-            INSERT INTO consulta VALUES (DEFAULT, ${medico_id}, ${pacientes_id}, '${data_hora}', '${tipo}', '${observacao}', ${clinica_id}, '${status}')
-        `)
+          INSERT INTO consulta VALUES (DEFAULT, ${medico_id}, ${pacientes_id}, '${data_hora}', '${tipo}', '${observacao}', ${clinica_id}, '${status}')
+        `);
 
-        response.success = affectRows > 0
+        response.success = affectRows > 0;
 
-        return res.json(response)
+        if (response.success) {
+            return res.json(response); // Retorna código 200 apenas se success for true
+        } else {
+            return res.status(422).json(response); // Retorna código de erro 422 (Unprocessable Entity)
+        }
     },
 
     async getConsultaByClinicaId(req, res) {
