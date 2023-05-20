@@ -14,7 +14,7 @@ module.exports = {
         const { medico_id, pacientes_id, data_hora, tipo, observacao, clinica_id, status } = req.body;
 
         const [, affectRows] = await connection.query(`
-            INSERT INTO consulta VALUES (DEFAULT, ${medico_id}, ${pacientes_id}, '${data_hora}', '${tipo}', '${observacao}', ${clinica_id}, ${status})
+            INSERT INTO consulta VALUES (DEFAULT, ${medico_id}, ${pacientes_id}, '${data_hora}', '${tipo}', '${observacao}', ${clinica_id}, '${status}')
         `)
 
         response.success = affectRows > 0
