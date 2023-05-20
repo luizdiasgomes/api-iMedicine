@@ -90,6 +90,41 @@ WHERE
 
 
 
+    async AcceptRequestConsulta(req, res) {
+        const response = { ...responseModel }
+        const { id } = req.params;
+
+        const [, data] = await connection.query(`
+        update consulta
+        set status = 'Aprovado'
+        where id = ${id};
+    
+        `)
+
+        response.success = data.length > 0
+        response.data = data
+
+        return res.json(response)
+    },
+
+    async DeniedRequestConsulta(req, res) {
+        const response = { ...responseModel }
+        const { id } = req.params;
+
+        const [, data] = await connection.query(`
+        update consulta
+        set status = 'Rejeitado'
+        where id = ${id};
+    
+        `)
+
+        response.success = data.length > 0
+        response.data = data
+
+        return res.json(response)
+    },
+
+
 
     async getConsultaByPacienteEmail(req, res) {
         const response = { ...responseModel }
