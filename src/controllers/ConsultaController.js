@@ -55,6 +55,42 @@ WHERE
         return res.json(response)
     },
 
+    async getConsultaByClinicaEmail(req, res) {
+        const response = { ...responseModel }
+        const { email } = req.params;
+
+        const [, data] = await connection.query(`
+        SELECT 
+    consulta.id, 
+    consulta.medico_id, 
+    consulta.pacientes_id, 
+    consulta.data_hora, 
+    consulta.tipo, 
+    consulta.observacao, 
+    consulta.status,
+    pacientes.username AS nome_do_paciente, 
+    medico.nome AS nome_do_medico,
+    clinica.titulo AS nome_da_clinica
+FROM 
+    consulta 
+    INNER JOIN pacientes ON consulta.pacientes_id = pacientes.id 
+    INNER JOIN medico ON consulta.medico_id = medico.id
+    INNER JOIN clinica ON consulta.clinica_id = clinica.id
+WHERE 
+    clinica.email  = ${email};
+
+    
+        `)
+
+        response.success = data.length > 0
+        response.data = data
+
+        return res.json(response)
+    },
+
+
+
+
     async getConsultaByPacienteEmail(req, res) {
         const response = { ...responseModel }
         const { email } = req.params;
