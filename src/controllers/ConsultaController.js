@@ -89,39 +89,48 @@ WHERE
     },
 
 
-
     async AcceptRequestConsulta(req, res) {
-        const response = { ...responseModel }
+        const response = { ...responseModel };
         const { id } = req.params;
 
-        const [, data] = await connection.query(`
-        update consulta
-        set status = 'Aprovado'
-        where id = ${id};
-    
-        `)
+        try {
+            const [, data] = await connection.query(`
+            UPDATE consulta
+            SET status = 'Aprovado'
+            WHERE id = ${id};
+          `);
 
-        response.success = data.length > 0
-        response.data = data
+            response.success = data.affectedRows > 0;
+            response.data = data;
 
-        return res.json(response)
+            return res.json(response);
+        } catch (error) {
+            console.error(error);
+            response.message = 'Erro ao atualizar o status da consulta';
+            return res.status(500).json(response);
+        }
     },
 
     async DeniedRequestConsulta(req, res) {
-        const response = { ...responseModel }
+        const response = { ...responseModel };
         const { id } = req.params;
 
-        const [, data] = await connection.query(`
-        update consulta
-        set status = 'Rejeitado'
-        where id = ${id};
-    
-        `)
+        try {
+            const [, data] = await connection.query(`
+            UPDATE consulta
+            SET status = 'Rejeitado'
+            WHERE id = ${id};
+          `);
 
-        response.success = data.length > 0
-        response.data = data
+            response.success = data.affectedRows > 0;
+            response.data = data;
 
-        return res.json(response)
+            return res.json(response);
+        } catch (error) {
+            console.error(error);
+            response.message = 'Erro ao atualizar o status da consulta';
+            return res.status(500).json(response);
+        }
     },
 
 

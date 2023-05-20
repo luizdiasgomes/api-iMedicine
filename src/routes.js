@@ -14,8 +14,10 @@ router.post('/login', PacienteController.login)
 router.get('/listaClinicas', ClinicaController.getClinicas)
 router.get('/listaClinicas/:id', ClinicaController.getClinicaById)
 router.get('/Clinicas/:email', ClinicaController.getClinicaByEmail)
-router.get('/Consulta/Aprovada/:id', ConsultaController.AcceptRequestConsulta)
-router.get('/Consulta/Negada/:id', ConsultaController.DeniedRequestConsulta)
+
+router.put('/Consulta/Aprovada/:id', ConsultaController.AcceptRequestConsulta)
+router.put('/Consulta/Recusada/:id', ConsultaController.DeniedRequestConsulta)
+
 router.get('/Consultas/Clinica/:email', ConsultaController.getConsultaByClinicaEmail)
 router.get('/Consultas/Paciente/:email', ConsultaController.getConsultaByPacienteEmail)
 router.get('/listaMedicos/:id', MedicoController.getMedicoById)
