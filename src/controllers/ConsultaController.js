@@ -93,7 +93,12 @@ FROM
     INNER JOIN medico ON consulta.medico_id = medico.id
     INNER JOIN clinica ON consulta.clinica_id = clinica.id
 WHERE 
-    clinica.email  = '${email}';
+    clinica.email = '${email}'
+ORDER BY 
+    CASE
+        WHEN consulta.status = 'Aguardando aprovação' THEN 0
+        ELSE 1
+    END;
 
     
         `)
