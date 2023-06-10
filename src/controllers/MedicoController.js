@@ -25,4 +25,18 @@ module.exports = {
     },
 
 
+    async criarMedico(req, res) {
+        const response = { ...responseModel }
+
+        const { nome, especialidade, clinica_id } = req.body;
+
+        const [, affectRows] = await connection.query(`
+            INSERT INTO medico VALUES (DEFAULT, '${nome}', '${especialidade}', ${clinica_id})
+        `)
+
+        response.success = affectRows > 0
+
+        return res.json(response)
+    },
+
 }
