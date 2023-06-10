@@ -172,7 +172,8 @@ ORDER BY
     consulta.status,
     pacientes.username AS nome_do_paciente, 
     medico.nome AS nome_do_medico,
-    clinica.titulo AS nome_da_clinica
+    clinica.titulo AS nome_da_clinica,
+    medico.especialidade AS especialidade_medico
 FROM 
     consulta 
     INNER JOIN pacientes ON consulta.pacientes_id = pacientes.id 
