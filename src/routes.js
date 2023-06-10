@@ -12,9 +12,9 @@ router.post('/criarPaciente', PacienteController.criarPaciente)
 router.post('/createConsulta', ConsultaController.createConsulta)
 router.post('/login', PacienteController.login)
 router.get('/listaClinicas', ClinicaController.getClinicas)
+router.get('/listaClinicas/:endereco', ClinicaController.buscarClinica)
 router.get('/listaClinicas/:id', ClinicaController.getClinicaById)
 router.get('/Clinicas/:email', ClinicaController.getClinicaByEmail)
-router.get('/ClinicasEndereco/:endereco', ClinicaController.buscarClinica)
 
 
 router.put('/Consulta/Aprovada/:id', ConsultaController.AcceptRequestConsulta)
