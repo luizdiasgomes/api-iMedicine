@@ -13,6 +13,16 @@ module.exports = {
 
         const { medico_id, pacientes_id, data_hora, tipo, observacao, clinica_id, status } = req.body;
 
+        // Verificar se a data é um dia útil (segunda a sexta-feira)
+        const consultaDate = new Date(data_hora);
+        const dayOfWeek = consultaDate.getDay();
+
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            response.success = false;
+            response.message = 'Não é permitido agendar consultas nos finais de semana.';
+            return res.status(400).json(response);
+        }
+
         // Verificar se já existe uma consulta com a mesma data e hora
         const [existingConsultations] = await connection.query(`
           SELECT * FROM consulta WHERE data_hora = '${data_hora}' AND medico_id = ${medico_id}
@@ -21,7 +31,7 @@ module.exports = {
         if (existingConsultations.length > 0) {
             response.success = false;
             response.message = 'Já existe uma consulta agendada para a mesma data e hora.';
-            return res.status(400).json(response); // Retorna código de erro 400 (Bad Request)
+            return res.status(400).json(response);
         }
 
         // Inserir a nova consulta no banco de dados
@@ -32,9 +42,9 @@ module.exports = {
         response.success = affectRows > 0;
 
         if (response.success) {
-            return res.json(response); // Retorna código 200 apenas se success for true
+            return res.json(response);
         } else {
-            return res.status(422).json(response); // Retorna código de erro 422 (Unprocessable Entity)
+            return res.status(422).json(response);
         }
     },
 
