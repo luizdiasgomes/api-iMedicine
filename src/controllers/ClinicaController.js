@@ -77,4 +77,18 @@ module.exports = {
         return res.json(response)
     },
 
+    async buscarClinica(req, res) {
+        const response = { ...responseModel }
+        const { endereco } = req.params;
+      
+        const [, data] = await connection.query(`
+        SELECT * FROM clinica WHERE endereco LIKE '%${endereco}%';
+        `)
+      
+        response.success = data.length > 0
+        response.data = data
+      
+        return res.json(response)
+      },
+
 }
