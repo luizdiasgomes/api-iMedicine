@@ -146,11 +146,13 @@ ORDER BY
     async DeniedRequestConsulta(req, res) {
         const response = { ...responseModel };
         const { id } = req.params;
+        const { justificativa } = req.body; // Nova propriedade para a justificativa
 
         try {
             const [, data] = await connection.query(`
             UPDATE consulta
-            SET status = 'Rejeitado'
+            SET status = 'Rejeitado',
+                justificativa = '${justificativa}'
             WHERE id = ${id};
           `);
 

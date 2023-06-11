@@ -19,7 +19,9 @@ router.get('/Clinicas/:email', ClinicaController.getClinicaByEmail)
 
 
 router.put('/Consulta/Aprovada/:id', ConsultaController.AcceptRequestConsulta)
-router.put('/Consulta/Recusada/:id', ConsultaController.DeniedRequestConsulta)
+//router.put('/Consulta/Recusada/:id', ConsultaController.DeniedRequestConsulta)
+
+router.put('/Consulta/:id/Recusar', ConsultaController.DeniedRequestConsulta)
 
 router.get('/Consultas/Clinica/:email', ConsultaController.getConsultaByClinicaEmail)
 router.get('/Consultas/Paciente/:email', ConsultaController.getConsultaByPacienteEmail)
