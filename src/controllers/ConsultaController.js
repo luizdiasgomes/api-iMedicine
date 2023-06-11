@@ -151,7 +151,7 @@ ORDER BY
         try {
             const [, data] = await connection.query(`
             UPDATE consulta
-            SET status = 'Rejeitado',
+            SET status = 'Recusado',
                 justificativa = '${justificativa}'
             WHERE id = ${id};
           `);
