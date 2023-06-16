@@ -28,10 +28,10 @@ module.exports = {
     async criarMedico(req, res) {
         const response = { ...responseModel }
 
-        const { nome, especialidade, clinica_id } = req.body;
+        const { nome, especialidade, clinica_id, crm } = req.body;
 
         const [, affectRows] = await connection.query(`
-            INSERT INTO medico VALUES (DEFAULT, '${nome}', '${especialidade}', ${clinica_id})
+            INSERT INTO medico VALUES (DEFAULT, '${nome}', '${especialidade}', ${clinica_id}, '${crm}')
         `)
 
         response.success = affectRows > 0
