@@ -39,4 +39,22 @@ module.exports = {
         return res.json(response)
     },
 
+
+    async getMedicoByEmailClinic(req, res) {
+        const response = { ...responseModel }
+        const { email } = req.params;
+
+        const [, data] = await connection.query(`
+        SELECT m.*
+        FROM medico m
+        JOIN clinica c ON m.clinica_id = c.id
+        WHERE c.email = '${email}';
+        `)
+
+        response.success = data.length > 0
+        response.data = data
+
+        return res.json(response)
+    },
+
 }
